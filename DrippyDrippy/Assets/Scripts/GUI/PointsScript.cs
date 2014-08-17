@@ -8,7 +8,7 @@ public class PointsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		points = 0;
-		multiplier = 100;
+		multiplier = 200;
 	}
 	
 	// Update is called once per frame
