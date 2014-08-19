@@ -17,7 +17,10 @@ public class MenuGUI : MonoBehaviour {
 	void OnGUI () {
 		GUI.BeginGroup (new Rect(0,0,Screen.width,Screen.height));
 		GUI.skin = normal;
-		GUI.Button (new Rect(Screen.width / 2 - Screen.width / 8,Screen.height / 2 - Screen.height / 16, Screen.width / 4, Screen.height / 8),"Play");
+		if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 - Screen.height / 16, Screen.width * 2 / 3, Screen.height / 8), "Play")) {
+			Application.LoadLevel ("GameScene");
+		}
+		GUI.Button (new Rect(Screen.width / 2 - Screen.width / 3,Screen.height / 2 - Screen.height / 16 + Screen.height / 8 + Screen.height / 64, Screen.width * 2 / 3, Screen.height / 8),"High Scores");
 		GUI.EndGroup ();
 	}
 }
