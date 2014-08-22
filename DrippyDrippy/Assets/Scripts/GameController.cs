@@ -15,12 +15,12 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		shouldCreate = true;
-		width = Screen.width / 300;
+		width = Screen.width / 320;
 	}
 
 	void Update () {
 		if (transform.position.y < threshold) {
-			GameObject clone = (GameObject)Instantiate (obstacle, player.transform.position + new Vector3(Random.Range (-1f * width, width), dist, 0), player.transform.rotation);
+			GameObject clone = (GameObject)Instantiate (obstacle, transform.position + new Vector3(Random.Range (-1f * width, width), dist, -transform.position.z), transform.rotation);
 			threshold -= gap;
 		}
 	}
