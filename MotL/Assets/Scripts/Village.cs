@@ -36,6 +36,9 @@ public class FarmingVillage : Village{
 		for (int i = 0; i < food.Length; i++) {
 			food[i] = MasterClass.STARTING_FOOD + 300;
 		}
+		for(int i = 0; i < tools.Length; i++) {
+			tools[i] = MasterClass.STARTING_TOOLS;
+		}
 	}
 }
 
