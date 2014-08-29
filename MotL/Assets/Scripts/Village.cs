@@ -5,8 +5,10 @@ public abstract class Village {
 
 	protected int [] food = new int[MasterClass.NUM_FOOD];
 	protected int MAX_FOOD;
+	protected int [] tools = new int[MasterClass.NUM_TOOLS];
+	protected int MAX_TOOLS;
 
-	protected string type;
+	protected int type;
 	protected int population;
 	protected int POP_MAX;
 	protected float DEATH_RATE;
@@ -21,9 +23,9 @@ public abstract class Village {
 	public abstract void consumeMedicineResources();
 }
 
-public class AgriVillage : Village{
-	public AgriVillage () {
-		type = "Agriculture";
+public class FarmingVillage : Village{
+	public FarmingVillage () {
+		type = MasterClass.FARMING_ID;
 		POP_MAX = 1500;
 		DEATH_RATE = 1.0f;
 		BIRTH_RATE = 1.0f;
@@ -32,7 +34,8 @@ public class AgriVillage : Village{
 	}
 	private void setDefaultResources() {
 		for (int i = 0; i < food.Length; i++) {
-			food[i] = 4500/ food.Length;
+			food[i] = MasterClass.STARTING_FOOD + 300;
 		}
 	}
 }
+
