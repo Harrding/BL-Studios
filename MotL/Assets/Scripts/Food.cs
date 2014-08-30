@@ -2,9 +2,9 @@
 using System.Collections;
 
 public abstract class Food {
-	protected float decayRate;
-	protected float defaultPrice;
-	protected float foodValue;
+	protected float decayRate = 1.00f;
+	protected float defaultPrice = 1.00f;
+	protected float foodValue = 5.00f;
 	protected int foodID;
 
 	public float getDecayRate() {
@@ -20,44 +20,30 @@ public abstract class Food {
 		return foodID;
 	}
 }
+
 public class Bread : Food {
 
 	public Bread() {
-		decayRate = 1.00f;
-		defaultPrice = 1.00f;
-		foodValue = 5.00f;
-		foodID = 0;
+		foodID = MasterClass.BREAD_ID;
 	}
 }
 public class Fish : Food {
 	public Fish() {
-		decayRate = 1.00f;
-		defaultPrice = 1.00f;
-		foodValue = 5.00f;
-		foodID = 1;
+		foodID = MasterClass.FISH_ID;
 	}
 }
 public class Potato : Food {
 	public Potato() {
-		decayRate = 1.00f;
-		defaultPrice = 1.00f;
-		foodValue = 5.00f;
-		foodID = 2;
+		foodID = MasterClass.POTATO_ID;
 	}
 }
 public class Cabbages : Food {
 	public Cabbages() {
-		decayRate = 1.00f;
-		defaultPrice = 1.00f;
-		foodValue = 5.00f;
-		foodID = 3;
+		foodID = MasterClass.CABBAGE_ID;
 	}
 }
 public class Meat : Food {
 	public Meat() {
-		decayRate = 1.00f;
-		defaultPrice = 1.00f;
-		foodValue = 5.00f;
-		foodID = 4;
+		foodID = MasterClass.MEAT_ID;
 	}
 }
