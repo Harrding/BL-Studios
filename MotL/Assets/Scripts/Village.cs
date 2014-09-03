@@ -49,7 +49,8 @@ public class TestVillage:Village{
 
 	}
 	public override void consumeFoodResources() {
-
+		if(!food[MasterClass.BREAD_ID] <= 0)
+		food[MasterClass.BREAD_ID] -= 
 	}
 	public override void consumeMedicineResources(){
 		
