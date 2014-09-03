@@ -11,6 +11,7 @@ public abstract class Village {
 	protected int medicine;
 	protected int MAX_MEDS = 300;
 	protected float happiness = 95.00f;
+	//protected float CONSUMPTION_FACTOR; // Will be equivalent of current population/ max population
 
 	// Village Type
 	protected int type;
@@ -40,6 +41,10 @@ public class TestVillage:Village{
 		DEATH_RATE = 1.0f;
 		BIRTH_RATE = 1.0f;
 	}
+	private void setDefaultResources() {
+		food [MasterClass.BREAD_ID] = 9000;
+
+	}
 	public override void createResources() {
 
 	}
@@ -62,18 +67,10 @@ public class FarmingVillage : Village{
 		setMaxResources ();
 	}
 	private void setDefaultResources() {
-		for (int i = 0; i < food.Length; i++) {
-			food[i] = MasterClass.STARTING_FOOD + 1000;
-		}
 
-		medicine = MasterClass.STARTING_MEDICINE;
-		for(int i = 0; i < tools.Length; i++) {
-			tools [i] = MasterClass.STARTING_TOOLS;
-		}
-		tools [MasterClass.HOE_ID] = MasterClass.STARTING_TOOLS;
 	}
 	private void setMaxResources() {
-		MAX_FOOD = 8000;
+
 	}
 	public override void createResources() {
 		
