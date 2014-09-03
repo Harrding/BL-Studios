@@ -11,11 +11,11 @@ public class Accelerometer2D : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.x < -Screen.width / 320) {
-			transform.position = new Vector3 (-Screen.width / 320, transform.position.y, transform.position.z);
+		if (transform.position.x < -Screen.width / 290) {
+			transform.position = new Vector3 (-Screen.width / 290, transform.position.y, transform.position.z);
 		}
-		if (transform.position.x > Screen.width / 320) {
-			transform.position = new Vector3 (Screen.width / 320, transform.position.y, transform.position.z);
+		if (transform.position.x > Screen.width / 290) {
+			transform.position = new Vector3 (Screen.width / 290, transform.position.y, transform.position.z);
 		}
 	}
 	
