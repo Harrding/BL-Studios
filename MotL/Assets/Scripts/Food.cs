@@ -8,16 +8,19 @@ public abstract class Food {
 	protected static float consumptionRate;
 	protected static int foodID;
 
-	public float getDecayRate() {
+	public static float getConsumptionRate() {
+		return consumptionRate;
+	}
+	public static float getDecayRate() {
 		return decayRate;
 	}
-	public float getDefaultPrice() {
+	public static float getDefaultPrice() {
 		return defaultPrice;
 	}
-	public float getFoodValue() {
+	public static float getFoodValue() {
 		return foodValue;
 	}
-	public int getFoodID() {
+	public static int getFoodID() {
 		return foodID;
 	}
 }
