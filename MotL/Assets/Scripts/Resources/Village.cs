@@ -39,6 +39,7 @@ public class TestVillage:Village{
 		type = MasterClass.TEST_ID;
 		DEATH_RATE = 1.0f;
 		BIRTH_RATE = 1.2f;
+		setDefaultResources ();
 	}
 	private void setDefaultResources() {
 		food [MasterClass.BREAD_ID] = 9000;
@@ -48,8 +49,9 @@ public class TestVillage:Village{
 
 	}
 	public override void consumeResources() {
-		if(!(food[MasterClass.BREAD_ID] <= 0))
-			food[MasterClass.BREAD_ID] -= (int)(Bread.getConsumptionRate() * ((float)population / POP_MAX)*MasterClass.timeAmount);
+		//if(!(food[MasterClass.BREAD_ID] <= 0))
+		//food[MasterClass.BREAD_ID] -= (int)(Bread.getConsumptionRate() * 1000*((float)population / POP_MAX)*MasterClass.timeAmount);
+		food [MasterClass.BREAD_ID] = food[MasterClass.BREAD_ID] - (int)(Bread.getConsumptionRate()*1000);
 	}
 
 	public override void useTools() {

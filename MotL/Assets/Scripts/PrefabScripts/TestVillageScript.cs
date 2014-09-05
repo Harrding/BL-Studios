@@ -15,6 +15,10 @@ public class TestVillageScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		int [] food = village.getFood();
+		print ("bread = " + food[MasterClass.BREAD_ID]);
+		print ("population = " + village.getPopulation());
+		village.consumeResources ();
 	}
 
 	IEnumerator consumeResources() {

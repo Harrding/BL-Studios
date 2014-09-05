@@ -5,7 +5,7 @@ public abstract class Food {
 	protected static float decayRate = 1.00f;
 	protected static float defaultPrice = 1.00f;
 	protected static float foodValue = 5.00f;
-	protected static float consumptionRate;
+	protected static float consumptionRate = 1.00f;
 	protected static int foodID;
 
 	public static float getConsumptionRate() {
