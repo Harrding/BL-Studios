@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour {
 	public float waterAmount;
 	public bool gameOver;
 
-	/// <summary>
-	/// S/	/// </summary>
 	// Use this for initialization
 	void Start () {
 		waterAmount = scaleValue;
