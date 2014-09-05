@@ -4,7 +4,7 @@ using System.Collections;
 public class PointsScript : MonoBehaviour {
 	public int points;
 	public float multiplier, time;
-
+	//
 	// Use this for initialization
 	void Start () {
 		time = 0.1f;
