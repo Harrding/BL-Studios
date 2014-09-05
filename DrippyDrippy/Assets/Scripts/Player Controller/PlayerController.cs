@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour {
 	public float waterAmount;
 	public bool gameOver;
 
-	//
 	// Use this for initialization
 	void Start () {
 		waterAmount = scaleValue;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKey (RIGHT)) {
 			transform.Translate(speed * Time.fixedDeltaTime, 0, 0);
 		}
-
+		transform.Translate (0, -speed * Time.deltaTime, 0);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
