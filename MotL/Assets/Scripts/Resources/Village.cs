@@ -11,6 +11,7 @@ public abstract class Village {
 	protected int medicine;
 	protected int MAX_MEDS = 300;
 	protected float happiness = 95.00f;
+	//protected float CONSUMPTION_FACTOR; // Will be equivalent of current population/ max population
 
 	// Village Type
 	protected int type;
@@ -29,8 +30,7 @@ public abstract class Village {
 
 	// Abstract methods that are required in each village for each village to exist
 	public abstract void createResources();
-	public abstract void consumeFoodResources();
-	public abstract void consumeMedicineResources();
+	public abstract void consumeResources();
 	public abstract void useTools();
 }
 public class TestVillage:Village{
@@ -38,17 +38,22 @@ public class TestVillage:Village{
 	public TestVillage(){
 		type = MasterClass.TEST_ID;
 		DEATH_RATE = 1.0f;
-		BIRTH_RATE = 1.0f;
+		BIRTH_RATE = 1.2f;
+		setDefaultResources ();
+	}
+	private void setDefaultResources() {
+		food [MasterClass.BREAD_ID] = 9000;
+
 	}
 	public override void createResources() {
 
 	}
-	public override void consumeFoodResources() {
+	public override void consumeResources() {
+		//if(!(food[MasterClass.BREAD_ID] <= 0))
+		//food[MasterClass.BREAD_ID] -= (int)(Bread.getConsumptionRate() * 1000*((float)population / POP_MAX)*MasterClass.timeAmount);
+		food [MasterClass.BREAD_ID] = food[MasterClass.BREAD_ID] - (int)(Bread.getConsumptionRate()*1000);
+	}
 
-	}
-	public override void consumeMedicineResources(){
-		
-	}
 	public override void useTools() {
 		
 	}
@@ -57,33 +62,23 @@ public class FarmingVillage : Village{
 	public FarmingVillage () {
 		type = MasterClass.FARMING_ID;
 		DEATH_RATE = 1.0f;
-		BIRTH_RATE = 1.0f;
+		BIRTH_RATE = 1.2f;
 		setDefaultResources ();
 		setMaxResources ();
 	}
 	private void setDefaultResources() {
-		for (int i = 0; i < food.Length; i++) {
-			food[i] = MasterClass.STARTING_FOOD + 1000;
-		}
 
-		medicine = MasterClass.STARTING_MEDICINE;
-		for(int i = 0; i < tools.Length; i++) {
-			tools [i] = MasterClass.STARTING_TOOLS;
-		}
-		tools [MasterClass.HOE_ID] = MasterClass.STARTING_TOOLS;
 	}
 	private void setMaxResources() {
-		MAX_FOOD = 8000;
+
 	}
 	public override void createResources() {
 		
 	}
-	public override void consumeFoodResources() {
+	public override void consumeResources() {
 
 	}
-	public override void consumeMedicineResources(){
 
-	}
 	public override void useTools() {
 
 	}

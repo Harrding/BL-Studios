@@ -3,6 +3,7 @@ using System.Collections;
 
 public static class MasterClass {
 
+	public static float timeAmount = 5f;
 	/* Write down each food type and its index here
 	 * 0 = Bread
 	 * 1 = Fish
@@ -39,11 +40,6 @@ public static class MasterClass {
 	public static int STARTING_TOOLS= 100;
 	public static int STARTING_MEDICINE = 150;
 
-	// Method to get the price based on the scarcity of a certain food product
-	// Will create the same method for tools as well
-	public static float getPrice(Food food, float scarcity) {
-		return food.getDefaultPrice () / (scarcity);
-	}
 
 	/* Village Types
 	 * 0 = Farming
