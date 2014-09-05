@@ -30,8 +30,7 @@ public abstract class Village {
 
 	// Abstract methods that are required in each village for each village to exist
 	public abstract void createResources();
-	public abstract void consumeFoodResources();
-	public abstract void consumeMedicineResources();
+	public abstract void consumeResources();
 	public abstract void useTools();
 }
 public class TestVillage:Village{
@@ -39,7 +38,7 @@ public class TestVillage:Village{
 	public TestVillage(){
 		type = MasterClass.TEST_ID;
 		DEATH_RATE = 1.0f;
-		BIRTH_RATE = 1.0f;
+		BIRTH_RATE = 1.2f;
 	}
 	private void setDefaultResources() {
 		food [MasterClass.BREAD_ID] = 9000;
@@ -48,13 +47,11 @@ public class TestVillage:Village{
 	public override void createResources() {
 
 	}
-	public override void consumeFoodResources() {
-		if(!food[MasterClass.BREAD_ID] <= 0)
-			food[MasterClass.BREAD_ID] -= Bread.getConsumptionRate() * ((float)population / POP_MAX);
+	public override void consumeResources() {
+		if(!(food[MasterClass.BREAD_ID] <= 0))
+			food[MasterClass.BREAD_ID] -= (int)(Bread.getConsumptionRate() * ((float)population / POP_MAX)*MasterClass.timeAmount);
 	}
-	public override void consumeMedicineResources(){
-		
-	}
+
 	public override void useTools() {
 		
 	}
@@ -63,7 +60,7 @@ public class FarmingVillage : Village{
 	public FarmingVillage () {
 		type = MasterClass.FARMING_ID;
 		DEATH_RATE = 1.0f;
-		BIRTH_RATE = 1.0f;
+		BIRTH_RATE = 1.2f;
 		setDefaultResources ();
 		setMaxResources ();
 	}
@@ -76,12 +73,10 @@ public class FarmingVillage : Village{
 	public override void createResources() {
 		
 	}
-	public override void consumeFoodResources() {
+	public override void consumeResources() {
 
 	}
-	public override void consumeMedicineResources(){
 
-	}
 	public override void useTools() {
 
 	}
