@@ -68,6 +68,10 @@ public static class MasterClass {
 	public static int WOOD_ID = 2;
 	public static int RUBIES_ID = 3;
 
+	// Default Resources
+	public static Bread BREAD = new Bread();
+
+
 	/*
 	public static float MUCalc(Food item) {
 		// Calculates the marginal utility per item
