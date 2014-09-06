@@ -2,7 +2,6 @@
 using System.Collections;
 
 public abstract class Village {
-
 	// Resources
 	protected int [] food = new int[MasterClass.NUM_FOOD];
 	protected int MAX_FOOD = 4500;
