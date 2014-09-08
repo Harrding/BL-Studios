@@ -8,12 +8,10 @@ public class PlayerController : MonoBehaviour {
 	public const float scaleValue = 100;
 	public float speed;
 	public float waterAmount;
-	public bool gameOver;
 
 	// Use this for initialization
 	void Start () {
 		waterAmount = scaleValue;
-		gameOver = false;
 	}
 	
 	// Update is called once per frame
@@ -37,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 		waterAmount += waterValue;
 		transform.localScale = new Vector3 (waterAmount / scaleValue , waterAmount / scaleValue, transform.localScale.z);
 		if (waterAmount <= 0) {
-			gameOver = true;
+			Application.LoadLevel("HighScoreScene");
 		}
 	}
 

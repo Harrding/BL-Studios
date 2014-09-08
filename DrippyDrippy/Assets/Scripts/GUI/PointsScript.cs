@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PointsScript : MonoBehaviour {
+	public GUISkin normal;
 	public int points;
 	public float multiplier, time;
 	//
@@ -20,7 +21,13 @@ public class PointsScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		GUI.Label (new Rect (0, 0, 100f, 100f), "" + points);
+		GUI.BeginGroup (new Rect(0,0,Screen.width,Screen.height));
+		GUI.skin = normal;
+		GUIStyle boxfont = new GUIStyle (GUI.skin.box);
+		boxfont.fontSize = Screen.height / 12;
+		boxfont.alignment = TextAnchor.MiddleCenter;
+		GUI.Box (new Rect (Screen.width / 50, Screen.height / 50, Screen.width - Screen.width / 25, Screen.height / 12 + Screen.height / 50), "" + points, boxfont);
+		GUI.EndGroup ();
 	}
 
 	void timeChange() {

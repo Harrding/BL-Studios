@@ -4,7 +4,7 @@ using System.Collections;
 public class SpawnScript : MonoBehaviour {
 
 	public GameObject player;
-	public GameObject obstacle;
+	public GameObject obstacle, powerup;
 	public float dist;
 	public float width;
 	public float threshold, gap;
@@ -16,6 +16,7 @@ public class SpawnScript : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		shouldCreate = true;
 		width = Screen.width / 290;
+		Invoke ("spawnPowerup", 3f);
 	}
 	
 	void Update () {
@@ -24,6 +25,13 @@ public class SpawnScript : MonoBehaviour {
 			threshold -= gap;
 		}
 		
+	}
+
+	void spawnPowerup () {
+		if (Random.Range (0f, 1f) < 0.2f) {
+			GameObject clone = (GameObject)Instantiate (powerup, transform.position + new Vector3(Random.Range (-1f * width, width), dist, -transform.position.z), transform.rotation);
+		}
+		Invoke ("spawnPowerup", 3f);
 	}
 
 	// Update is called once per frame
