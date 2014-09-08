@@ -2,14 +2,13 @@
 using System.Collections;
 
 public abstract class Village {
-
 	// Resources
-	protected int [] food = new int[MasterClass.NUM_FOOD];
-	protected int MAX_FOOD = 4500;
-	protected int [] tools = new int[MasterClass.NUM_TOOLS];
-	protected int MAX_TOOLS = 100;
-	protected int medicine;
-	protected int MAX_MEDS = 300;
+	protected float [] food = new float[MasterClass.NUM_FOOD];
+	protected float MAX_FOOD = 4500.0f;
+	protected float [] tools = new float[MasterClass.NUM_TOOLS];
+	protected float MAX_TOOLS = 100.0f;
+	protected float medicine;
+	protected float MAX_MEDS = 300.0f;
 	protected float happiness = 95.00f;
 	//protected float CONSUMPTION_FACTOR; // Will be equivalent of current population/ max population
 
@@ -17,15 +16,15 @@ public abstract class Village {
 	protected int type;
 
 	// Population
-	protected int population = 1500;
-	protected int POP_MAX = 2000;
+	protected float population = 1500.0f;
+	protected float POP_MAX = 2000.0f;
 	protected float DEATH_RATE;
 	protected float BIRTH_RATE;
 
 	// Getter Methods/ Default methods that exist already in each village
-	public int getType() {return type;}
-	public int getPopulation(){return population;}
-	public int [] getFood(){return food;}
+	public float getType() {return type;}
+	public float getPopulation(){return population;}
+	public float [] getFood(){return food;}
 	public float getHappiness() {return happiness;}
 
 	// Abstract methods that are required in each village for each village to exist
@@ -42,7 +41,7 @@ public class TestVillage:Village{
 		setDefaultResources ();
 	}
 	private void setDefaultResources() {
-		food [MasterClass.BREAD_ID] = 9000;
+		food [MasterClass.BREAD_ID] = 9000f;
 
 	}
 	public override void createResources() {
@@ -50,8 +49,7 @@ public class TestVillage:Village{
 	}
 	public override void consumeResources() {
 		//if(!(food[MasterClass.BREAD_ID] <= 0))
-		//food[MasterClass.BREAD_ID] -= (int)(Bread.getConsumptionRate() * 1000*((float)population / POP_MAX)*MasterClass.timeAmount);
-		food [MasterClass.BREAD_ID] = food[MasterClass.BREAD_ID] - (int)(Bread.getConsumptionRate()*1000);
+		food[MasterClass.BREAD_ID] -= MasterClass.BREAD.getConsumptionRate() *((float)population / (float)POP_MAX)*MasterClass.timeAmount;
 	}
 
 	public override void useTools() {

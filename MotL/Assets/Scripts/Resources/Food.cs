@@ -2,31 +2,30 @@
 using System.Collections;
 
 public abstract class Food {
-	protected static float decayRate = 1.00f;
-	protected static float defaultPrice = 1.00f;
-	protected static float foodValue = 5.00f;
-	protected static float consumptionRate = 1.00f;
-	protected static int foodID;
+	protected float decayRate = 1.00f;
+	protected float defaultPrice = 1.00f;
+	protected float foodValue = 5.00f;
+	protected float consumptionRate = 1.00f;
+	protected int foodID;
 
-	public static float getConsumptionRate() {
+	public float getConsumptionRate() {
 		return consumptionRate;
 	}
-	public static float getDecayRate() {
+	public float getDecayRate() {
 		return decayRate;
 	}
-	public static float getDefaultPrice() {
+	public float getDefaultPrice() {
 		return defaultPrice;
 	}
-	public static float getFoodValue() {
+	public float getFoodValue() {
 		return foodValue;
 	}
-	public static int getFoodID() {
+	public int getFoodID() {
 		return foodID;
 	}
 }
 
 public class Bread : Food {
-
 	public Bread() {
 		foodID = MasterClass.BREAD_ID;
 		decayRate = 0.4f;
