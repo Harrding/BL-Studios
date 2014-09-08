@@ -22,7 +22,7 @@ public class MenuGUI : MonoBehaviour {
 		GUIStyle boxfont = new GUIStyle (GUI.skin.label);
 		boxfont.alignment = TextAnchor.MiddleCenter;
 		boxfont.normal.background = title;
-		GUI.Box (new Rect (Screen.width / 100, Screen.height / 100, Screen.width - Screen.width / 50, Screen.height / 2 - Screen.height / 50), "", boxfont);
+		GUI.Box (new Rect (Screen.width / 100, Screen.height / 40, Screen.width - Screen.width / 50, Screen.height / 2 - Screen.height / 20), "", boxfont);
 		GUIStyle buttonfont = new GUIStyle (GUI.skin.button);
 		buttonfont.fontSize = Screen.height / 18;
 		if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 8, Screen.width * 2 / 3, Screen.height / 8), "Play", buttonfont)) {
