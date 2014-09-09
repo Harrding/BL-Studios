@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKey (RIGHT)) {
 			transform.Translate(speed * Time.fixedDeltaTime, 0, 0);
 		}
-		transform.Translate (0, -speed * Time.deltaTime, 0);
+		//transform.Translate (0, -speed * Time.deltaTime, 0);
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {

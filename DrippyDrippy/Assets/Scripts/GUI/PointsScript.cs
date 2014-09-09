@@ -8,11 +8,11 @@ public class PointsScript : MonoBehaviour {
 	//
 	// Use this for initialization
 	void Start () {
-		time = 0.1f;
+		//time = 0.1f;
 		points = 0;
 		multiplier = 200;
-		Time.timeScale = time;
-		Invoke ("timeChange",time);
+		//Time.timeScale = time;
+		//Invoke ("timeChange",time);
 	}
 	
 	// Update is called once per frame
@@ -30,10 +30,10 @@ public class PointsScript : MonoBehaviour {
 		GUI.EndGroup ();
 	}
 
-	void timeChange() {
+	/*void timeChange() {
 		time += 0.05f;
 		Time.timeScale = time;
 		if (time < 3f)
 			Invoke ("timeChange", time);
-	}
+	}*/
 }
