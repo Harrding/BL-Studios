@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour {
 	public const float scaleValue = 100;
 	public float speed;
 	public float waterAmount;
-	public GameObject splashPS;
+	public GameObject splashPS, pointcounter;
 
 	// Use this for initialization
 	void Start () {
 		waterAmount = scaleValue;
+		pointcounter = GameObject.FindGameObjectWithTag ("Points");
 	}
 	
 	// Update is called once per frame
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 		waterAmount += waterValue;
 		transform.localScale = new Vector3 (waterAmount / scaleValue , waterAmount / scaleValue, transform.localScale.z);
 		if (waterAmount <= 0) {
+			MasterClass.saveHighestScore(pointcounter.GetComponent<PointsScript>().points);
 			Application.LoadLevel("HighScoreScene");
 		}
 	}
