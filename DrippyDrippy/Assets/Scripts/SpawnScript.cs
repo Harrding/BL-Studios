@@ -23,6 +23,7 @@ public class SpawnScript : MonoBehaviour {
 			GameObject clone = (GameObject)Instantiate (obstacle, transform.position + new Vector3(Random.Range (-1f * width, width), dist, -transform.position.z), transform.rotation);
 			threshold -= gap;
 		}
+		spawnPowerup ();
 		
 	}
 

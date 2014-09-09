@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
 			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0) {
 				Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
-				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .6f);
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .9f);
 			}
 			Destroy (collider.gameObject);
 		}
