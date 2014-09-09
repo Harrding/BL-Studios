@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if(collider.gameObject.CompareTag("NormalObs")){
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
-			GameObject clone = Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation) as GameObject;
+			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0)
+				 Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
 			Destroy (collider.gameObject);
 		}
 	}
