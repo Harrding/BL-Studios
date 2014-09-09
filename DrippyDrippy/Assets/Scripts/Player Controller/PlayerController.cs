@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public const float scaleValue = 100;
 	public float speed;
 	public float waterAmount;
+	public GameObject splashPS;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,14 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if(collider.gameObject.CompareTag("NormalObs")){
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
+			GameObject clone = Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation) as GameObject;
+			Destroy (collider.gameObject);
+		}
+	}
+	void OnCollisionEnter2D(Collision2D collider) {
+		if(collider.gameObject.CompareTag("NormalObs")){
+			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
+
 		}
 	}
 
