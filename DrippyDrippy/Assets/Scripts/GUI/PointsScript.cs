@@ -11,6 +11,7 @@ public class PointsScript : MonoBehaviour {
 		//time = 0.1f;
 		points = 0;
 		multiplier = 200;
+		Time.timeScale = 2f;
 		//Time.timeScale = time;
 		//Invoke ("timeChange",time);
 	}
