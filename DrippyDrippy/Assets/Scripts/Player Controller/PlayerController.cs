@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour {
 	public const float scaleValue = 100;
 	public float speed;
 	public float waterAmount;
+	public int logcount, PUcount;
 	public GameObject splashPS, pointcounter;
 
 	// Use this for initialization
 	void Start () {
 		waterAmount = scaleValue;
 		pointcounter = GameObject.FindGameObjectWithTag ("Points");
+		logcount = 0;
+		PUcount = 0;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +41,12 @@ public class PlayerController : MonoBehaviour {
 				Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .9f);
 			}
+			if (collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() > 0) {
+				PUcount++;
+			}
+			else {
+				logcount++;
+			}
 			Destroy (collider.gameObject);
 		}
 	}
@@ -52,7 +61,9 @@ public class PlayerController : MonoBehaviour {
 		waterAmount += waterValue;
 		transform.localScale = new Vector3 (waterAmount / scaleValue , waterAmount / scaleValue, transform.localScale.z);
 		if (waterAmount <= 0) {
-			MasterClass.saveHighestScore(pointcounter.GetComponent<PointsScript>().points);
+			MasterClass.saveHighestScore(pointcounter.gameObject.GetComponent<PointsScript>().points);
+			MasterClass.saveObstaclesHit(logcount);
+			MasterClass.savePUCollected(PUcount);
 			Application.LoadLevel("HighScoreScene");
 		}
 	}
