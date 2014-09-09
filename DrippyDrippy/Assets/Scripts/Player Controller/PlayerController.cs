@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(rigidbody2D.velocity.y < -10){
+			rigidbody2D.velocity = new Vector2 (0, -10);
+			rigidbody2D.gravityScale = 0;
+		}
 		if(Input.GetKey(LEFT)) {
 			transform.Translate(speed * Time.fixedDeltaTime * -1, 0, 0);
 		}
@@ -30,8 +34,10 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if(collider.gameObject.CompareTag("NormalObs")){
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
-			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0)
-				 Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
+			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0) {
+				Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .6f);
+			}
 			Destroy (collider.gameObject);
 		}
 	}
