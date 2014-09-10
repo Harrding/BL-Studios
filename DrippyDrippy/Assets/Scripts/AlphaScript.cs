@@ -32,6 +32,6 @@ public class AlphaScript : MonoBehaviour {
 	}
 
 	void ChangeScene() {
-		Application.LoadLevel ("MenuScene");
+		Application.LoadLevel ("TempScene");
 	}
 }

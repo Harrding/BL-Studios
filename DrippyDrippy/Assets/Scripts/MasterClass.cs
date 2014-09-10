@@ -6,6 +6,8 @@ public static class MasterClass
 	static string POWERUPS_HS = "MostPowerUps";
 	static string HIGHESTSCORE_HS = "HighestScore";
 	static string OBSTACLES_HS = "ObstaclesHit";
+	public static bool musicon = true;
+	public static bool newhighscore = false;
 
 	public static void saveHighestScore(int score) {
 		PlayerPrefs.SetInt (HIGHESTSCORE_HS, score);
