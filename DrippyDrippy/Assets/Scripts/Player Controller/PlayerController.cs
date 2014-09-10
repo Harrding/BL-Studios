@@ -60,10 +60,13 @@ public class PlayerController : MonoBehaviour {
 	void changeWaterAmount(float waterValue) {
 		waterAmount += waterValue;
 		transform.localScale = new Vector3 (waterAmount / scaleValue , waterAmount / scaleValue, transform.localScale.z);
-		if (waterAmount <= 0) {
-			MasterClass.saveHighestScore(pointcounter.gameObject.GetComponent<PointsScript>().points);
-			MasterClass.saveObstaclesHit(logcount);
-			MasterClass.savePUCollected(PUcount);
+		if (waterAmount <= 20) {
+			if (MasterClass.getHighestScore() < pointcounter.gameObject.GetComponent<PointsScript>().points)
+				MasterClass.saveHighestScore(pointcounter.gameObject.GetComponent<PointsScript>().points);
+			if (MasterClass.getObstaclesHit () < logcount)
+				MasterClass.saveObstaclesHit(logcount);
+			if (MasterClass.getPUCollected () < PUcount)
+				MasterClass.savePUCollected(PUcount);
 			Application.LoadLevel("HighScoreScene");
 		}
 	}
