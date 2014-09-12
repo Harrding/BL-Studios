@@ -29,7 +29,7 @@ public class SpawnScript : MonoBehaviour {
 
 	void spawnPowerup () {
 		if(transform.position.y < thresholdPU) {
-			if (Random.Range (0f, 1f) < 0.2f) {
+			if (Random.Range (0f, 1f) < 0.15f) {
 				GameObject clone = (GameObject)Instantiate (powerup, transform.position + new Vector3(Random.Range (-1f * width, width), dist, -transform.position.z - 1), transform.rotation);
 			}
 			thresholdPU -= gapPU;

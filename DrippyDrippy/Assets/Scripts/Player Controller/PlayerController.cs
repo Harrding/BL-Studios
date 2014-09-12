@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(rigidbody2D.velocity.y < -10){
-			rigidbody2D.velocity = new Vector2 (0, -10);
+		if(rigidbody2D.velocity.y < -7.5f){
+			rigidbody2D.velocity = new Vector2 (0, -7.5f);
 			tempscale = rigidbody2D.gravityScale;
 			rigidbody2D.gravityScale = 0;
 		}
