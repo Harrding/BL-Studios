@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float waterAmount;
 	public int logcount, PUcount;
-	public GameObject splashPS, pointcounter, musicobj, logsplash, powersplash;
 	public bool dead = false;
+	public GameObject splashPS, logPS, pointcounter, musicobj, logsplash, powersplash;
 	float tempscale;
 
 	// Use this for initialization
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour {
 				PUcount++;
 			}
 			else {
+				Instantiate (logPS, new Vector3(collider.transform.position.x, collider.transform.position.y, -6), Quaternion.Euler(new Vector3(-90, 0, 0)));
 				logsplash.gameObject.GetComponent<AudioSource>().Play();
 				logcount++;
 			}
@@ -59,12 +60,12 @@ public class PlayerController : MonoBehaviour {
 				rigidbody2D.gravityScale = tempscale + 0.01f;
 			}
 			Destroy (collider.gameObject);
+
 		}
 	}
 	void OnCollisionEnter2D(Collision2D collider) {
 		if(collider.gameObject.CompareTag("NormalObs") && dead == false){
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
-
 		}
 	}
 
