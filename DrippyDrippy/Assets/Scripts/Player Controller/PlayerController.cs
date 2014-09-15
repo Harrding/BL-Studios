@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public float waterAmount;
 	public int logcount, PUcount;
 	public GameObject splashPS, pointcounter, musicobj, logsplash, powersplash;
+	public bool dead = false;
 	float tempscale;
 
 	// Use this for initialization
@@ -40,15 +41,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		if(collider.gameObject.CompareTag("NormalObs")){
-			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
-			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0) {
-				Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
-				if (rigidbody2D.gravityScale > 0f && rigidbody2D.gravityScale < 0.1f)
-					tempscale = rigidbody2D.gravityScale;
-				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .2f);
-				rigidbody2D.gravityScale = tempscale + 0.01f;
-			}
+		if(collider.gameObject.CompareTag("NormalObs") && dead == false){
 			if (collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() > 0) {
 				powersplash.gameObject.GetComponent<AudioSource>().Play();
 				PUcount++;
@@ -57,11 +50,19 @@ public class PlayerController : MonoBehaviour {
 				logsplash.gameObject.GetComponent<AudioSource>().Play();
 				logcount++;
 			}
+			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
+			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0) {
+				Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
+				if (rigidbody2D.gravityScale > 0f && rigidbody2D.gravityScale < 0.1f)
+					tempscale = rigidbody2D.gravityScale;
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .2f);
+				rigidbody2D.gravityScale = tempscale + 0.01f;
+			}
 			Destroy (collider.gameObject);
 		}
 	}
 	void OnCollisionEnter2D(Collision2D collider) {
-		if(collider.gameObject.CompareTag("NormalObs")){
+		if(collider.gameObject.CompareTag("NormalObs") && dead == false){
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
 
 		}
@@ -81,7 +82,9 @@ public class PlayerController : MonoBehaviour {
 				MasterClass.savePUCollected(PUcount);
 			MasterClass.musicon = false;
 			Destroy (musicobj);
-			Application.LoadLevel("HighScoreScene");
+			pointcounter.gameObject.GetComponent<PointsScript>().activateDeath (logcount, PUcount);
+			waterAmount = 0;
+			dead = true;
 		}
 	}
 
