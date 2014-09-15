@@ -86,10 +86,10 @@ public class PointsScript : MonoBehaviour {
 				}
 				if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 4, Screen.width * 2 / 3, Screen.height / 8), "Menu", buttonfont2)) {
 					clicker.gameObject.GetComponent<AudioSource>().Play();
-					musicobj.gameObject.GetComponent<AudioSource>().Play();
+					Destroy (musicobj);
 					paused = false;
 					Time.timeScale = 2f;
-					Application.LoadLevel ("MenuScene");
+					Application.LoadLevel ("TempScene");
 				}
 			}
 			GUI.EndGroup ();
@@ -116,10 +116,12 @@ public class PointsScript : MonoBehaviour {
 			buttonfont.fontSize = Screen.height / 18;
 			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 8, Screen.width * 2 / 3, Screen.height / 8), "Retry", buttonfont)) {
 				clicker.gameObject.GetComponent<AudioSource>().Play();
+				MasterClass.newhighscore = false;
 				Application.LoadLevel ("TempScene2");
 			}
-			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 4, Screen.width * 2 / 3, Screen.height / 8), "Next", buttonfont)) {
+			if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 4, Screen.width * 2 / 3, Screen.height / 8), "High Scores", buttonfont)) {
 				clicker.gameObject.GetComponent<AudioSource>().Play();
+				MasterClass.newhighscore = false;
 				Application.LoadLevel ("HighScoreScene");
 			}
 			GUI.EndGroup ();
