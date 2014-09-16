@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour {
 	public int logcount, PUcount;
 	public bool dead = false;
 	public GameObject splashPS, logPS, pointcounter, musicobj, logsplash, powersplash;
-	float tempscale;
 
+	float tempscale;
+	public float maxVelocity;
 	// Use this for initialization
 	void Start () {
 		waterAmount = scaleValue;
@@ -22,12 +23,13 @@ public class PlayerController : MonoBehaviour {
 		powersplash = GameObject.FindGameObjectWithTag ("PowerSplash");
 		logcount = 0;
 		PUcount = 0;
+		maxVelocity = -8/5f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(rigidbody2D.velocity.y < -7.5f){
-			rigidbody2D.velocity = new Vector2 (0, -7.5f);
+		if(rigidbody2D.velocity.y < maxVelocity){
+			rigidbody2D.velocity = new Vector2 (0, maxVelocity);
 			tempscale = rigidbody2D.gravityScale;
 			rigidbody2D.gravityScale = 0;
 		}
@@ -54,14 +56,17 @@ public class PlayerController : MonoBehaviour {
 			changeWaterAmount( collider.gameObject.GetComponent<WaterChanger>().changeWaterValue());
 			if(collider.gameObject.GetComponent<WaterChanger>().changeWaterValue() < 0) {
 				Instantiate(splashPS, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
-				if (rigidbody2D.gravityScale > 0f && rigidbody2D.gravityScale < 0.1f)
-					tempscale = rigidbody2D.gravityScale;
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * .2f);
-				rigidbody2D.gravityScale = tempscale + 0.01f;
+				rigidbody2D.gravityScale = tempscale;
 			}
 			Destroy (collider.gameObject);
 
 		}
+	}
+	void incrementLevel() {
+		rigidbody2D.gravityScale = tempscale + .01f;
+		tempscale = rigidbody2D.gravityScale;
+		maxVelocity -= 8f/5f;
 	}
 	void OnCollisionEnter2D(Collision2D collider) {
 		if(collider.gameObject.CompareTag("NormalObs") && dead == false){

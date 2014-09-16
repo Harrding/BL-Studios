@@ -8,6 +8,9 @@ public class PointsScript : MonoBehaviour {
 	public int points, logs, powerups;
 	public float multiplier, time;
 	public bool paused = false, activated = false;
+
+	private int level;
+	private GameObject player;
 	//
 	// Use this for initialization
 	void Start () {
@@ -20,6 +23,8 @@ public class PointsScript : MonoBehaviour {
 		powerups = 0;
 		multiplier = 200;
 		Time.timeScale = 2f;
+		player = GameObject.FindGameObjectWithTag ("Player");
+		level = 1;
 		//Time.timeScale = time;
 		//Invoke ("timeChange",time);
 	}
@@ -28,6 +33,14 @@ public class PointsScript : MonoBehaviour {
 	void Update () {
 		if (activated == false)
 			points += (int)(Time.deltaTime * multiplier);
+		if(points > level * MasterClass.PPLEVEL && level < 5) {
+			//Display new level GUI
+			incrementLevel();
+		}
+	}
+	void incrementLevel() {
+		level++;
+		player.SendMessage ("incrementLevel");
 	}
 
 	public void playSound () {
