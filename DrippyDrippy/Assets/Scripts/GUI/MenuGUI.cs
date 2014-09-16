@@ -30,7 +30,7 @@ public class MenuGUI : MonoBehaviour {
 			clicker.gameObject.GetComponent<AudioSource>().Play();
 			Application.LoadLevel ("GameScene");
 		}
-		if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 4 + Screen.height / 16, Screen.width * 2 / 3, Screen.height / 8), "High Scores", buttonfont)) {
+		if (GUI.Button (new Rect (Screen.width / 2 - Screen.width / 3, Screen.height / 2 + Screen.height / 4, Screen.width * 2 / 3, Screen.height / 8), "High Scores", buttonfont)) {
 			clicker.gameObject.GetComponent<AudioSource>().Play();
 			Application.LoadLevel ("HighScoreScene");
 		}
