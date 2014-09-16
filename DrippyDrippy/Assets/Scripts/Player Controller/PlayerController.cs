@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour {
 			Destroy (musicobj);
 			pointcounter.gameObject.GetComponent<PointsScript>().activateDeath (logcount, PUcount);
 			waterAmount = 0;
+			gameObject.renderer.material.color = new Color(0f,0f,0f,0f);
+			gameObject.transform.GetChild(0).renderer.material.color = new Color (0f,0f,0f,0f);
 			dead = true;
 		}
 	}
