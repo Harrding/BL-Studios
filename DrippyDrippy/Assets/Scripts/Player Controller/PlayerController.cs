@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 		powersplash = GameObject.FindGameObjectWithTag ("PowerSplash");
 		logcount = 0;
 		PUcount = 0;
-		maxVelocity = -8/5f;
+		maxVelocity = 0f;
 	}
 	
 	// Update is called once per frame
@@ -64,9 +64,9 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void incrementLevel() {
-		rigidbody2D.gravityScale = tempscale + .01f;
+		rigidbody2D.gravityScale = tempscale + .02f;
 		tempscale = rigidbody2D.gravityScale;
-		maxVelocity -= 8f/5f;
+		maxVelocity -= 9f/6f;
 	}
 	void OnCollisionEnter2D(Collision2D collider) {
 		if(collider.gameObject.CompareTag("NormalObs") && dead == false){
