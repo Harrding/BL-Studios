@@ -38,12 +38,9 @@ public class PointsScript : MonoBehaviour {
 			//Display new level GUI
 			incrementLevel();
 		}
-	}
-
-	void FixedUpdate () {
 		if (newlevelstate == 1) {
 			if (pointsize < Screen.height / 4) {
-				pointsize += Screen.height / 400;
+				pointsize += Screen.height / 400 * Time.fixedDeltaTime * 50;
 			}
 			else {
 				pointsize = Screen.height / 4;
@@ -52,7 +49,7 @@ public class PointsScript : MonoBehaviour {
 		}
 		if (newlevelstate == 2) {
 			if (pointsize > 0) {
-				pointsize -= Screen.height / 400;
+				pointsize -= Screen.height / 400 * Time.fixedDeltaTime * 50;
 			}
 			else {
 				pointsize = 0;
@@ -60,7 +57,6 @@ public class PointsScript : MonoBehaviour {
 			}
 		}
 	}
-
 	void incrementLevel() {
 		level++;
 		newlevelstate = 1;
