@@ -6,10 +6,10 @@ public class PointsScript : MonoBehaviour {
 	public GUISkin normal;
 	public Texture2D pausebut, pausebutover;
 	public int points, logs, powerups;
-	public float multiplier, time;
+	public float multiplier, time, pointsize = 0;
 	public bool paused = false, activated = false;
 
-	private int level;
+	private int level, newlevelstate;
 	private GameObject player;
 	//
 	// Use this for initialization
@@ -24,7 +24,8 @@ public class PointsScript : MonoBehaviour {
 		multiplier = 200;
 		Time.timeScale = 2f;
 		player = GameObject.FindGameObjectWithTag ("Player");
-		level = 1;
+		level = 0;
+		incrementLevel ();
 		//Time.timeScale = time;
 		//Invoke ("timeChange",time);
 	}
@@ -33,13 +34,32 @@ public class PointsScript : MonoBehaviour {
 	void Update () {
 		if (activated == false)
 			points += (int)(Time.deltaTime * multiplier);
-		if(points > level * MasterClass.PPLEVEL && level < 5) {
+		if(points > (level * MasterClass.PPLEVEL + Mathf.Pow (2f,level - 1) * 2000) && level < 5) {
 			//Display new level GUI
 			incrementLevel();
+		}
+		if (newlevelstate == 1) {
+			if (pointsize < Screen.height / 4) {
+				pointsize += Screen.height / 400 * Time.fixedDeltaTime * 50;
+			}
+			else {
+				pointsize = Screen.height / 4;
+				newlevelstate = 2;
+			}
+		}
+		if (newlevelstate == 2) {
+			if (pointsize > 0) {
+				pointsize -= Screen.height / 400 * Time.fixedDeltaTime * 50;
+			}
+			else {
+				pointsize = 0;
+				newlevelstate = 0;
+			}
 		}
 	}
 	void incrementLevel() {
 		level++;
+		newlevelstate = 1;
 		player.SendMessage ("incrementLevel");
 	}
 
@@ -81,11 +101,15 @@ public class PointsScript : MonoBehaviour {
 				paused = true;
 				Time.timeScale = 0f;
 			}
+			GUIStyle labelfont = new GUIStyle (GUI.skin.label);
+			labelfont.fontSize = (int)pointsize;
+			labelfont.alignment = TextAnchor.MiddleCenter;
+			if (pointsize != 0)
+				GUI.Label (new Rect (0,Screen.height / 50 + Screen.width / 9,Screen.width,Screen.height - Screen.height / 50 - Screen.width / 9), "Level" + level, labelfont);
 			if (paused == true) {
 				GUI.Box (new Rect(-10,-10,Screen.width + 20,Screen.height + 20), "");
 				GUI.Box (new Rect(-10,-10,Screen.width + 20,Screen.height + 20), "");
 				GUI.Box (new Rect(-10,-10,Screen.width + 20,Screen.height + 20), "");
-				GUIStyle labelfont = new GUIStyle (GUI.skin.label);
 				labelfont.fontSize = Screen.height / 8;
 				labelfont.alignment = TextAnchor.MiddleCenter;
 				GUI.Label (new Rect(0, 0, Screen.width, Screen.height - Screen.height / 8), "Paused", labelfont);
