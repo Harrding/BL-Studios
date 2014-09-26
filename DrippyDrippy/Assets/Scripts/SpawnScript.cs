@@ -4,10 +4,10 @@ using System.Collections;
 public class SpawnScript : MonoBehaviour {
 
 	public GameObject player;
-	public GameObject obstacle;
+	public GameObject obstacle, powerup;
 	public float dist;
 	public float width;
-	public float threshold, gap;
+	public float threshold, gap, thresholdPU, gapPU;
 	
 	private bool shouldCreate;
 	
@@ -23,7 +23,18 @@ public class SpawnScript : MonoBehaviour {
 			GameObject clone = (GameObject)Instantiate (obstacle, transform.position + new Vector3(Random.Range (-1f * width, width), dist, -transform.position.z), transform.rotation);
 			threshold -= gap;
 		}
+		spawnPowerup ();
 		
+	}
+
+	void spawnPowerup () {
+		if(transform.position.y < thresholdPU) {
+			if (Random.Range (0f, 1f) < 0.15f) {
+				GameObject clone = (GameObject)Instantiate (powerup, transform.position + new Vector3(Random.Range (-1f * width, width), dist, -transform.position.z - 1), transform.rotation);
+			}
+			thresholdPU -= gapPU;
+		}
+
 	}
 
 	// Update is called once per frame
