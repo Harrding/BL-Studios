@@ -15,7 +15,7 @@ public class SpawnScript : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		shouldCreate = true;
-		width = Screen.width / 290;
+		width = (float)(((float)Screen.width / (float)Screen.height) * 6.0);
 	}
 	
 	void Update () {
